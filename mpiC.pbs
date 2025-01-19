@@ -1,0 +1,82 @@
+#!/bin/bash
+# Job name
+#PBS -N name
+# Output files
+#PBS -o ./name.o
+#PBS -e ./name.e
+# Queue name
+#PBS -q short_cpuQ
+# Set the maximum wall time
+#PBS -l walltime=0:02:00
+# Number of nodes, cpus, mpi processors and amount of memory
+#PBS -l select=1:ncpus=16:mpiprocs=16:mem=1gb
+
+# Modules for python and MPI
+module load gcc91
+module load mpich-3.2.1--gcc-9.1.0
+
+gcc() {
+    gcc-9.1.0 "$@"
+}
+gcc --version
+
+# Select the working directory 
+cd /home/riccardo.bassan/test/homework2
+
+# the code should be previously compiled
+mpicc -o es homework2.c 
+
+# Run the code
+mpirun -np 1 ./es 16
+mpirun -np 2 ./es 16
+mpirun -np 4 ./es 16
+mpirun -np 8 ./es 16
+mpirun -np 16 ./es 16
+
+mpirun -np 1 ./es 32
+mpirun -np 2 ./es 32
+mpirun -np 4 ./es 32
+mpirun -np 8 ./es 32
+mpirun -np 16 ./es 32
+
+mpirun -np 1 ./es 64
+mpirun -np 2 ./es 64
+mpirun -np 4 ./es 64
+mpirun -np 8 ./es 64
+mpirun -np 16 ./es 64
+
+mpirun -np 1 ./es 128
+mpirun -np 2 ./es 128
+mpirun -np 4 ./es 128
+mpirun -np 8 ./es 128
+mpirun -np 16 ./es 128
+
+mpirun -np 1 ./es 256
+mpirun -np 2 ./es 256
+mpirun -np 4 ./es 256
+mpirun -np 8 ./es 256
+mpirun -np 16 ./es 256
+
+mpirun -np 1 ./es 512
+mpirun -np 2 ./es 512
+mpirun -np 4 ./es 512
+mpirun -np 8 ./es 512
+mpirun -np 16 ./es 512
+
+mpirun -np 1 ./es 1024
+mpirun -np 2 ./es 1024
+mpirun -np 4 ./es 1024
+mpirun -np 8 ./es 1024
+mpirun -np 16 ./es 1024
+
+mpirun -np 1 ./es 2048
+mpirun -np 2 ./es 2048
+mpirun -np 4 ./es 2048
+mpirun -np 8 ./es 2048
+mpirun -np 16 ./es 2048
+
+mpirun -np 1 ./es 4096
+mpirun -np 2 ./es 4096
+mpirun -np 4 ./es 4096
+mpirun -np 8 ./es 4096
+mpirun -np 16 ./es 4096
